@@ -21,13 +21,14 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Rebuild better-sqlite3 for Electron
-        run: npx electron-rebuild -f -m better-sqlite3
+      - name: Install app native deps (prebuilt binaries)
+        run: npx electron-builder install-app-deps
 
-      - name: Build Vite + Electron
-        run: |
-          npx vite build --config vite.electron.config.ts
-          npx electron-builder --win --x64
+      - name: Build Vite
+        run: npx vite build --config vite.electron.config.ts
+
+      - name: Build Windows EXE
+        run: npx electron-builder --win --x64
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -45,7 +46,7 @@ jobs:
     permissions:
       contents: write
     steps:
-      - name: Download
+      - name: Download artifacts
         uses: actions/download-artifact@v4
         with:
           name: windows-builds
@@ -58,7 +59,6 @@ jobs:
           name: ${{ github.ref_name }}
           body: |
             ## A to Z Digital Service — نظام إدارة مختبر الأسنان
-            **ملفات التحميل:**
             - 📦 Setup.exe — ملف تثبيت كامل
             - 🚀 Portable.exe — نسخة محمولة بدون تثبيت
           draft: false
