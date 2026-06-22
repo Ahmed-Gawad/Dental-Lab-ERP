@@ -1,0 +1,50 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+www/
+build/
+release/
+out/
+
+# Electron builder cache
+.electron-builder/
+
+# TypeScript incremental build info
+*.tsbuildinfo
+
+# Database files
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+
+# Environment / secrets
+.env
+.env.local
+.env.*.local
+.env.production
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor directories
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Replit-specific (not needed on GitHub)
+.replit
+replit.nix
+.replit-artifact/
+.upm/
+.local/
